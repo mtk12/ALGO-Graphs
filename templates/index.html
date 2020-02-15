@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<title>ALGO PROJECT</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="shortcut icon" type="image/x-icon" href="https://cdn2.iconfinder.com/data/icons/social-media-line/50/graph-32.png" />
+<meta name="theme-color" content="#ffffff">	
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+
+<body class="w3-black">
+
+<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center w3-gray" style="margin-bottom:12px;width:120px">
+  <!-- Avatar image in top left corner -->
+  <p> </p>
+  
+  <button value="Prims" class="hapus_krs w3-bar-item w3-button w3-padding-small w3-gray">
+	<img src='https://cdn2.iconfinder.com/data/icons/social-media-line/50/graph-32.png'/>
+    <i class="w3-large"></i>
+    <p>PRIMS</p>
+  </button>
+  <button value="Kruskals" class="hapus_krs w3-bar-item w3-button w3-padding-small w3-gray">
+    <img src='https://cdn2.iconfinder.com/data/icons/social-media-line/50/graph-32.png'/>
+    <i class="w3-large"></i>
+    <p>KRUSKAL</p>
+  </button>
+  <button value="Dijkstra" class="hapus_krs w3-bar-item w3-button w3-padding-small w3-gray">
+    <img src='https://cdn2.iconfinder.com/data/icons/social-media-line/50/graph-32.png'/>
+    <i class="w3-large"></i>
+    <p>DIJKSTRA</p>
+  </button>
+  <button value="Bellman Ford" class="hapus_krs w3-bar-item w3-button w3-padding-small w3-gray">
+    <img src='https://cdn2.iconfinder.com/data/icons/social-media-line/50/graph-32.png'/>
+    <i class="w3-large"></i>
+    <p>BELMAN FORD</p>
+  </button>
+  <button value="Floyd Warshall" class="hapus_krs w3-bar-item w3-button w3-padding-small w3-gray">
+    <img src='https://cdn2.iconfinder.com/data/icons/social-media-line/50/graph-32.png'/>
+    <i class="w3-large"></i>
+    <p>FLOYD WARSHALL</p>
+  </button>
+  <button value="Clustering" class="hapus_krs w3-bar-item w3-button w3-padding-small w3-gray">
+    <img src='https://cdn2.iconfinder.com/data/icons/social-media-line/50/graph-32.png'/>
+    <i class="w3-large"></i>
+    <p>CLUSTERING CO-EFFICIENT</p>
+  </button>
+  
+</nav>
+
+<div class="w3-padding-large" id="main" style="margin-left: 120px">
+
+  <div class="w3-content w3-text-grey w3-center" id="contact">
+    <h2 class="w3-text-light-grey">Enter the Benchmark File</h2>
+	
+    <form method="POST" action="{{ url_for('upload') }}" enctype="multipart/form-data" >
+		
+		<input style="visibility: hidden;" type="file" name="file" id="file" class="inputfile"  accept=".txt" />
+		<p></p>
+        <label class= "w3-black w3-padding-large w3-hover-gray" for="file"><i class="fa fa-file-text-o w3-large" aria-hidden="true"></i> Select File</label>
+      
+	  <p>
+		<input class ="btn btn-danger w3-hover-black" type="submit" value="Submit">
+	  </p>
+	</form>
+  </div>
+  <div class="col-md-6">
+		<div class="chart" id="bargraph">
+            <script>
+                var graphs = {{plot | safe}};
+                Plotly.plot('bargraph',graphs,{});
+            </script>
+        </div>
+    </div>
+  
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="{{ url_for('static', filename='js/plot.js') }}"></script>
+</body>
+</html>
